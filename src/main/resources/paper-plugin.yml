@@ -1,0 +1,11 @@
+name: Libuid
+version: '${version}'
+main: dev.tako.libuid.LibuidPlugin
+api-version: '1.21'
+load: STARTUP
+dependencies:
+  server:
+    CraftEngine:
+      load: BEFORE
+      required: true
+      join-classpath: true
