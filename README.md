@@ -22,14 +22,16 @@ Libuid does not add any blocks or gameplay on its own. It provides the underlyin
 ## Requirements
 
 - Java 21
-- Paper API 1.21
+- Paper 1.21 or Folia, API version 1.21
 - CraftEngine 26.9.1
 
 Libuid runs as a Paper plugin and depends on CraftEngine. The loading order is declared in `paper-plugin.yml` so that Libuid loads before CraftEngine. Servers using Libuid must have CraftEngine installed.
 
+Libuid declares `folia-supported: true`, so it loads and runs on Folia as well as Paper. Libuid performs no scheduling and keeps no main-thread state of its own, so its API can be called from any region thread. Item stacks must still be handled by the thread that owns them.
+
 ## Installation
 
-1. Install Paper 1.21 or a compatible fork.
+1. Install Paper 1.21 or Folia.
 2. Install CraftEngine 26.9.1.
 3. Place the Libuid plugin jar into the server `plugins` directory.
 4. Start the server.
@@ -47,7 +49,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("dev.tako:libuid:1.0.0")
+    compileOnly("dev.tako:libuid:1.0.1")
     compileOnly("io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT")
     compileOnly("net.momirealms:craft-engine-core:26.9.1")
     compileOnly("net.momirealms:craft-engine-bukkit:26.9.1")
@@ -67,7 +69,7 @@ For Maven projects:
 <dependency>
     <groupId>dev.tako</groupId>
     <artifactId>libuid</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <scope>provided</scope>
 </dependency>
 ```
@@ -416,7 +418,9 @@ Building requires Java 21 and runs the JUnit tests included in the project.
 
 ## Version and compatibility
 
-Current version: `1.0.0`.
+Current version: `1.0.1`.
+
+Libuid declares `folia-supported: true` in `paper-plugin.yml`, so it loads and runs on both Paper and Folia.
 
 Libuid identifies fluid data by `ResourceKey`. Do not change fluid keys already in use when upgrading, or existing saves, item PDC and recipes will fail to find their fluids.
 

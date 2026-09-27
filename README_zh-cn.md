@@ -22,14 +22,16 @@ Libuid 本身不添加新的方块或玩法。它负责提供基础 API，具体
 ## 运行环境
 
 - Java 21
-- Paper API 1.21
+- Paper 1.21 或 Folia，API 版本 1.21
 - CraftEngine 26.9.1
 
 Libuid 作为 Paper 插件运行，并依赖 CraftEngine。插件启动顺序由 `paper-plugin.yml` 声明为先于 CraftEngine 加载，因此使用 Libuid 的服务器必须安装 CraftEngine。
 
+Libuid 声明了 `folia-supported: true`，因此可以在 Paper 与 Folia 上加载运行。Libuid 自身不进行任何调度，也不保存主线程状态，API 可以在任意区域线程直接调用；物品堆仍应由持有它的线程处理。
+
 ## 安装
 
-1. 安装 Paper 1.21 或兼容版本。
+1. 安装 Paper 1.21 或 Folia。
 2. 安装 CraftEngine 26.9.1。
 3. 将 Libuid 插件放入服务器的 `plugins` 目录。
 4. 启动服务器。
@@ -47,7 +49,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("dev.tako:libuid:1.0.0")
+    compileOnly("dev.tako:libuid:1.0.1")
     compileOnly("io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT")
     compileOnly("net.momirealms:craft-engine-core:26.9.1")
     compileOnly("net.momirealms:craft-engine-bukkit:26.9.1")
@@ -67,7 +69,7 @@ dependencies {
 <dependency>
     <groupId>dev.tako</groupId>
     <artifactId>libuid</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <scope>provided</scope>
 </dependency>
 ```
@@ -482,7 +484,9 @@ gradle publishToMavenLocal
 
 ## 版本与兼容性
 
-当前版本：`1.0.0`。
+当前版本：`1.0.1`。
+
+Libuid 在 `paper-plugin.yml` 中声明了 `folia-supported: true`，因此可以在 Paper 与 Folia 上加载运行。
 
 Libuid 的流体数据以 `ResourceKey` 标识。插件升级时不要随意更改已经投入使用的流体 key，否则旧存档、物品 PDC 和配方将无法找到原来的流体。
 

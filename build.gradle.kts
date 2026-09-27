@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "dev.tako"
-version = "1.0.0"
+version = "1.0.1"
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(21)
